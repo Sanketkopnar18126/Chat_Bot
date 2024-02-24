@@ -16,6 +16,12 @@ const UserSchema = new Schema(
          required: true,
          minlength: 6,
       },
+      chats: [
+         {
+            type: Schema.Types.ObjectId,
+            ref: "Chat",
+         },
+      ],
    },
    { timestamps: true }
 );
