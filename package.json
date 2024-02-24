@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "nodemon -r dotenv/config --experimental-json-modules Backend/src/index.js",
+    "dev": "nodemon -r dotenv/config --experimental-json-modules Backend/src/index.js",
     "start": "node Backend/src/index.js"
   },
   "keywords": [],
