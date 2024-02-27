@@ -19,9 +19,10 @@ const generateAcessAndRefreshToken = async (userId) => {
 };
 const registerUser = asynchHandler(async (req, res) => {
    const { fullname, email, password } = req.body;
+   // console.log("Reqbody", req.body);
 
    if (
-      [fullname, email, password].some((fields) => fields.trim() === undefined)
+      [fullname, email, password].some((fields) => fields?.trim() === undefined)
    ) {
       throw new apiError(404, "You have to fill all detais");
    }
