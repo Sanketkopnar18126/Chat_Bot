@@ -1,9 +1,42 @@
 import { IoIosLogIn } from "react-icons/io";
 import { Box, Typography, Button } from "@mui/material";
-// import { toast } from "react-hot-toast";
-// import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import { useState } from "react";
 export const SignUp = () => {
+const [userData,setuserData]=useState({
+   fullname:"",
+   email:"",
+   password:""
+})
+const navigate=useNavigate()
+const onHandleSignUp=async(e)=>{
+   e.preventDefault()
+   try {
+      const res=await fetch('/users/register',{
+         method:"POST",
+         headers:{
+            'Content-Type':'application/json'
+         },
+         body:JSON.stringify(userData)
+      })
+
+      if(res.ok){
+         const data=await res.json()
+         // console.log(data)
+         toast.success("Signed Up Successfully", { id: "signup" });
+         navigate('/login')
+      }
+      
+   } catch (error) {
+      console.log("Error at SignUp Component",error)
+   }
+
+}
+// console.log("userData",userData)
+
+
    return (
       <Box width={"100%"} height={"100%"} display="flex" flex={1}>
          <Box
@@ -50,6 +83,8 @@ export const SignUp = () => {
                      type="text"
                      name="name"
                      label="Name"
+                     value={userData.fullname}
+                     onChange={(e)=>setuserData({...userData,fullname:e.target.value})}
                  
                   />
                   <TextField
@@ -57,15 +92,19 @@ export const SignUp = () => {
                      name="email"
                      label="Email"
                      className="text-white"
+                     value={userData.email}
+                     onChange={(e)=>setuserData({...userData,email:e.target.value})}
                   />
                   <TextField
                      type="password"
                      name="password"
                      label="Password"
                      className="text-white"
+                     value={userData.password}
+                     onChange={(e)=>setuserData({...userData,password:e.target.value})}
                   />
                   <Button
-                     type="submit"
+                    onClick={onHandleSignUp}
                      sx={{
                         px: 2,
                         py: 1,

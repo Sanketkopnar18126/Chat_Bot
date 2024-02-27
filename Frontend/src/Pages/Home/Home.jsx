@@ -1,8 +1,12 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import {Footer} from '/Chat_Bot/Frontend/src/Components/Footer/Footer'
+
+
 export const Home = () => {
   const theme = useTheme();
   const isBelowMd = useMediaQuery(theme.breakpoints.down("md"));
+
+
   return (
 
       <Box width={"100%"} height={"100%"}>
