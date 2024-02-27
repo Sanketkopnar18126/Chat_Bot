@@ -12,7 +12,7 @@ export const Header = () => {
   const navigate=useNavigate()
 
 const {currentUser}=useSelector((state)=>state.userdata)
-console.log("Cu",currentUser)
+// console.log("Cu",currentUser)
 
   const onHandleLogOutBtn=async()=>{
     try {
